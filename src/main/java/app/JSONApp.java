@@ -33,8 +33,6 @@ public class JSONApp {
     }
 
     public static JsonObject sessionResult() {
-        JsonObject jsonObject = new JsonObject();
-
         JsonObject examsObjects[] = new JsonObject[3];
         examsObjects[0] = new JsonObject(
                         new JsonPair("course", new JsonString("OOP")),
@@ -53,7 +51,7 @@ public class JSONApp {
                 new JsonPair("mark", new JsonNumber(2)),
                 new JsonPair("passed", new JsonBoolean(false))
         );
-        jsonObject = new JsonObject(
+        JsonObject jsonObject = new JsonObject(
                         new JsonPair("name", new JsonString("Andrii")),
                         new JsonPair("surname", new JsonString("Rodionov")),
                         new JsonPair("year", new JsonNumber(2)),

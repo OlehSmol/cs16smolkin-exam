@@ -8,7 +8,7 @@ import java.util.Map;
  * Created by Andrii_Rodionov on 1/3/2017.
  */
 public class JsonObject extends Json {
-    private HashMap<String, Json> pairs;
+    private Map<String, Json> pairs;
 
     public JsonObject(JsonPair... jsonPairs) {
         this.pairs = new HashMap<>();

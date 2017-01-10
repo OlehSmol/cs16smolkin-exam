@@ -1,6 +1,5 @@
 package json;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -9,11 +8,11 @@ import java.util.Map;
  * Created by Andrii_Rodionov on 1/3/2017.
  */
 public class JsonObject extends Json {
-    HashMap<String, Json> pairs;
+    private HashMap<String, Json> pairs;
 
     public JsonObject(JsonPair... jsonPairs) {
         this.pairs = new HashMap<>();
-        for(JsonPair pair : jsonPairs) {
+        for (JsonPair pair : jsonPairs) {
             this.pairs.put(pair.key, pair.value);
         }
     }
@@ -29,7 +28,7 @@ public class JsonObject extends Json {
             json.append((String) pair.getKey());
             json.append("': ");
             json.append(((Json) pair.getValue()).toJson());
-            if(pairsIt.hasNext()){
+            if (pairsIt.hasNext()) {
                 json.append(", ");
             }
         }
@@ -42,7 +41,7 @@ public class JsonObject extends Json {
     }
 
     public Json find(String name) {
-        if(pairs.get(name) != null){
+        if (pairs.get(name) != null) {
             return pairs.get(name);
         }
         return null;
@@ -50,9 +49,9 @@ public class JsonObject extends Json {
 
     public JsonObject projection(String... names) {
         JsonObject newJsonObject = new JsonObject();
-        for(String name : names) {
+        for (String name : names) {
             Json value = this.find(name);
-            if(value != null) {
+            if (value != null) {
                 newJsonObject.add(new JsonPair(name, value));
             }
         }

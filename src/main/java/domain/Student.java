@@ -13,7 +13,7 @@ public class Student extends BasicStudent {
     public Student(String name, String surname, Integer year, Tuple<String, Integer>... exams) {
         super(name, surname, year);
         this.exams = new ArrayList<>();
-        for(Tuple<String, Integer> exam : exams) {
+        for (Tuple<String, Integer> exam : exams) {
             this.exams.add(exam);
         }
     }
@@ -22,7 +22,7 @@ public class Student extends BasicStudent {
     public JsonObject toJsonObject() {
         JsonObject jsonObject = super.toJsonObject();
         JsonObject[] examsObject = new JsonObject[this.exams.size()];
-        for(int i=0; i<this.exams.size(); i++) {
+        for (int i = 0; i < this.exams.size(); i++) {
             examsObject[i] = new JsonObject(
                                 new JsonPair("course", new JsonString(exams.get(i).key)),
                                 new JsonPair("mark", new JsonNumber(exams.get(i).value)),

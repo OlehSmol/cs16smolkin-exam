@@ -1,31 +1,61 @@
 package json;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 /**
  * Created by Andrii_Rodionov on 1/3/2017.
  */
 public class JsonObject extends Json {
+    HashMap<String, Json> pairs;
 
     public JsonObject(JsonPair... jsonPairs) {
-        // ToDo
+        this.pairs = new HashMap<>();
+        for(JsonPair pair : jsonPairs) {
+            this.pairs.put(pair.key, pair.value);
+        }
     }
 
     @Override
     public String toJson() {
-        // ToDo
-        return null;
+        StringBuilder json = new StringBuilder();
+        json.append("{");
+        Iterator pairsIt = this.pairs.entrySet().iterator();
+        while (pairsIt.hasNext()) {
+            Map.Entry pair = (Map.Entry) pairsIt.next();
+            json.append("'");
+            json.append((String) pair.getKey());
+            json.append("': ");
+            json.append(((Json) pair.getValue()).toJson());
+            if(pairsIt.hasNext()){
+                json.append(", ");
+            }
+        }
+        json.append("}");
+        return json.toString();
     }
 
     public void add(JsonPair jsonPair) {
-        // ToDo
+        this.pairs.put(jsonPair.key, jsonPair.value);
     }
 
     public Json find(String name) {
-        // ToDo
+        if(pairs.get(name) != null){
+            return pairs.get(name);
+        }
         return null;
     }
 
     public JsonObject projection(String... names) {
-        // ToDo
-        return null;
+        JsonObject newJsonObject = new JsonObject();
+        for(String name : names) {
+            Json value = this.find(name);
+            if(value != null) {
+                newJsonObject.add(new JsonPair(name, value));
+            }
+        }
+        return newJsonObject;
     }
 }

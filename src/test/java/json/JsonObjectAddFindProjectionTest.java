@@ -26,7 +26,6 @@ public class JsonObjectAddFindProjectionTest {
         jsonObject.add(new JsonPair("age", new JsonNumber(19)));
 
         String expectedJSON = "{'name': 'Oles', 'age': 19}";
-
         JSONAssert.assertEquals(expectedJSON, jsonObject.toJson(), true);
     }
 
